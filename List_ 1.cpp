@@ -37,7 +37,9 @@ struct LincedList{
     }
 };
 
-
+bool isChar(char c){
+	return (( c >= 'a' )&&(c <= 'z')) || ( ( c >= 'A' )&&(c <= 'Z'));
+}
 
 
 
@@ -46,9 +48,9 @@ LincedList *FindMinWord(LincedList *list, int &k){
     LincedList *MaxWord = new LincedList();
     int leng = 0;
     while(c != NULL)  {
-        if ((( c -> l >= 'a' )&&(c -> l <= 'z')) || ( ( c -> l >= 'A' )&&(c -> l <= 'Z')) ) {
+        if (isChar(c -> l) ) {
             LincedList *word = new LincedList();
-            while ((c != NULL) &&(((c->l >= 'a') && (c->l <= 'z')) || ((c->l >= 'A') && (c->l <= 'Z')))) {
+            while ((c != NULL) && isChar(c -> l)) {
                 leng++;
                 word->AddToEnd(c->l);
                 c = c->next;
@@ -58,7 +60,7 @@ LincedList *FindMinWord(LincedList *list, int &k){
                 k = leng;
                 MaxWord = word;
             }
-            //c = c->next;
+           
             leng = 0;
         }
         else {
